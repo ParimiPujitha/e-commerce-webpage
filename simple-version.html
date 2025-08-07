@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>TechMart - Electronics Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .product-details {
+            margin-top: 1rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .spec-item {
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .spec-value {
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <i class="fas fa-laptop"></i> TechMart
+                </div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Premium Electronics Store</h1>
+            <p>Discover the latest gadgets and electronics with unbeatable prices</p>
+            <button class="btn" onclick="scrollToProducts()">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 TechMart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample products data
+        const products = [
+            {
+                id: 1,
+                name: "Samsung Galaxy S24 Ultra",
+                price: "₹129,999",
+                originalPrice: "₹149,999",
+                description: "Latest Samsung flagship with S Pen, 200MP camera, and AI features.",
+                image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop",
+                specifications: {
+                    "Display": "6.8-inch Dynamic AMOLED 2X",
+                    "Processor": "Snapdragon 8 Gen 3",
+                    "RAM": "12GB",
+                    "Storage": "256GB",
+                    "Camera": "200MP + 12MP + 50MP + 10MP",
+                    "Battery": "5000mAh"
+                }
+            },
+            {
+                id: 2,
+                name: "Apple iPhone 15 Pro Max",
+                price: "₹149,999",
+                originalPrice: "₹159,999",
+                description: "Premium iPhone with titanium design, A17 Pro chip, and 5x optical zoom.",
+                image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop",
+                specifications: {
+                    "Display": "6.7-inch Super Retina XDR",
+                    "Processor": "A17 Pro chip",
+                    "RAM": "8GB",
+                    "Storage": "256GB",
+                    "Camera": "48MP + 12MP + 12MP",
+                    "Battery": "4441mAh"
+                }
+            },
+            {
+                id: 3,
+                name: "MacBook Pro 16-inch M3 Max",
+                price: "₹349,999",
+                originalPrice: "₹399,999",
+                description: "Powerful laptop for professionals with M3 Max chip and Liquid Retina XDR display.",
+                image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=400&fit=crop",
+                specifications: {
+                    "Display": "16-inch Liquid Retina XDR",
+                    "Processor": "M3 Max chip",
+                    "RAM": "32GB",
+                    "Storage": "1TB SSD",
+                    "Graphics": "Integrated 40-core GPU",
+                    "Battery": "Up to 22 hours"
+                }
+            },
+            {
+                id: 4,
+                name: "Sony WH-1000XM5",
+                price: "₹29,999",
+                originalPrice: "₹34,999",
+                description: "Industry-leading noise cancellation with exceptional sound quality.",
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+                specifications: {
+                    "Type": "Over-ear wireless",
+                    "Noise Cancellation": "Industry-leading",
+                    "Battery Life": "30 hours",
+                    "Connectivity": "Bluetooth 5.2",
+                    "Weight": "250g",
+                    "Features": "Touch controls, Quick Charge"
+                }
+            },
+            {
+                id: 5,
+                name: "Samsung 65-inch QLED 4K TV",
+                price: "₹129,999",
+                originalPrice: "₹149,999",
+                description: "Quantum HDR with 100% color volume and Object Tracking Sound.",
+                image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=400&fit=crop",
+                specifications: {
+                    "Display": "65-inch QLED 4K",
+                    "Resolution": "3840 x 2160",
+                    "HDR": "Quantum HDR",
+                    "Smart TV": "Tizen OS",
+                    "Connectivity": "4 HDMI, 2 USB",
+                    "Audio": "Object Tracking Sound"
+                }
+            },
+            {
+                id: 6,
+                name: "Canon EOS R6 Mark II",
+                price: "₹189,999",
+                originalPrice: "₹209,999",
+                description: "Full-frame mirrorless camera with 24.2MP and 4K video.",
+                image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop",
+                specifications: {
+                    "Sensor": "24.2MP Full-frame CMOS",
+                    "Video": "4K 60p",
+                    "AF Points": "1053 AF areas",
+                    "ISO": "100-102400",
+                    "Burst": "40 fps",
+                    "Stabilization": "5-axis IBIS"
+                }
+            }
+        ];
+
+        // Load products
+        function loadProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/400x250?text=Product+Image'">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">${product.price}</div>
+                        <p class="product-description">${product.description}</p>
+                        <button class="btn" onclick="showProductDetails(${product.id})">View Details</button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Show product details in modal
+        function showProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const modal = document.getElementById('productModal');
+            const modalContent = document.getElementById('modalContent');
+
+            let specsHtml = '';
+            for (const [key, value] of Object.entries(product.specifications)) {
+                specsHtml += `
+                    <div class="spec-item">
+                        <div class="spec-label">${key}</div>
+                        <div class="spec-value">${value}</div>
+                    </div>
+                `;
+            }
+
+            modalContent.innerHTML = `
+                <div style="display: flex; gap: 2rem; margin-bottom: 2rem;">
+                    <img src="${product.image}" alt="${product.name}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px;" onerror="this.src='https://via.placeholder.com/200x200?text=Product+Image'">
+                    <div>
+                        <h2 style="margin-bottom: 1rem; color: #333;">${product.name}</h2>
+                        <div style="font-size: 1.5rem; color: #ff6b6b; font-weight: bold; margin-bottom: 1rem;">${product.price}</div>
+                        <p style="color: #666; margin-bottom: 1rem;">${product.description}</p>
+                        <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h3 style="margin-bottom: 1rem;">Specifications</h3>
+                    <div class="specs-grid">
+                        ${specsHtml}
+                    </div>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // Add to cart function
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            alert(`${product.name} added to cart!`);
+        }
+
+        // Scroll to products
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Load products when page loads
+        window.onload = function() {
+            loadProducts();
+        }
+    </script>
+</body>
+</html> 
